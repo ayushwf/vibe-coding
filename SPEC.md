@@ -118,6 +118,149 @@ Testing & Repo:
 - A simple smoke test is included at `tests/test_fakeData.js` that validates the fake data shape. Run with `npm test`.
 - Add a git repository and commit; `.gitignore` is present to exclude node modules, build artifacts, and virtualenvs.
 
+## New Feature: Real Madrid Data & UI Redesign (SPEC)
+
+### Overview
+
+Replace the generic business example data and UI with a Real Madrid-focused site skeleton. Data will be placeholders (empty fields) for now — you will populate them later. Update the frontend UI to a new design and color palette: purple, green, yellow with selectable light/dark themes.
+
+### Goals
+
+- Provide a clear spec first (this document), then implement step-by-step.
+- Replace `data` module with Real Madrid-specific structures: top ten players (stats placeholders) and a `history` object (season-by-season placeholder entries).
+- Redesign UI components and pages to emphasize player cards, stats, and club history sections.
+- Add theme support with accent choices: `purple`, `green`, `yellow`, plus `light` and `dark` base themes.
+- Keep pages functional and accessible; maintain automated contrast checks and smoke tests.
+
+### File / Data Model
+
+New or updated files:
+
+```
+data/
+  players.ts        # top-ten players, each with placeholder stats
+  history.ts        # Real Madrid historical seasons/events (placeholders)
+components/
+  PlayerCard.tsx    # visual card for a player's stats
+  HistoryItem.tsx   # component for a history entry
+  ThemeContext.tsx  # updated theme provider (accents: purple/green/yellow)
+pages/
+  index.tsx         # landing: club overview + featured players
+  players.tsx       # list/top-ten players
+  history.tsx       # club history timeline
+SPEC.md
+README.md
+```
+
+Data model excerpts (TypeScript):
+
+```ts
+// data/players.ts
+export type Player = {
+  id: string
+  name?: string
+  position?: string
+  number?: number | null
+  nationality?: string
+  appearances?: number | null
+  goals?: number | null
+  assists?: number | null
+  seasons?: Array<string> | null
+}
+
+export const topPlayers: Player[] = Array.from({length:10}).map((_,i)=>({
+  id: String(i+1),
+  name: '', // empty placeholder for now
+  position: '',
+  number: null,
+  nationality: '',
+  appearances: null,
+  goals: null,
+  assists: null,
+  seasons: null,
+}))
+```
+
+```ts
+// data/history.ts
+export type HistoryItem = {
+  id: string
+  season?: string
+  summary?: string
+  trophies?: string[] | null
+}
+
+export const history: HistoryItem[] = [] // fill later
+```
+
+### UI & Theming
+
+- Design: clean, modern cards with club accent color accents; a left or top navigation and a content area.
+- Replace current color accents with `purple`, `green`, `yellow`. Provide `--accent`, `--accent-600`, `--accent-400`, and `--accent-rgb` variables for each accent.
+- Light/dark toggles keep backgrounds and text colors swapped; accents must be adjusted per theme to maintain contrast.
+- Place theme controls as a horizontal row of icon buttons in the top-right (no dropdown). Buttons: purple, green, yellow, plus a toggler for Light/Dark.
+
+CSS variable example:
+
+```css
+:root{ --bg:#fff; --fg:#0f172a; --muted:#6b7280; }
+[data-theme="dark"]{ --bg:#071022; --fg:#e6eef8; }
+[data-accent="purple"]{ --accent:#7c3aed; --accent-rgb:124,58,237 }
+[data-accent="green"]{ --accent:#16a34a; --accent-rgb:22,163,74 }
+[data-accent="yellow"]{ --accent:#f59e0b; --accent-rgb:245,158,11 }
+```
+
+Accessibility & contrast:
+
+- Continue to run the `tools/check_contrast.js` script after changes and tune per-theme accents to meet WCAG AA for normal text where practical.
+- Keep controls keyboard-focusable and provide `aria-label` attributes.
+
+Animations:
+
+- Subtle pulse/transform on accent button click and when accent changes; smooth transitions for color/background changes.
+
+### Pages
+
+- `index`: Club name, short placeholder summary, top 3 featured players (cards), quick links to `players` and `history` pages.
+- `players`: grid of top-ten player cards (placeholders for stats).
+- `history`: timeline/list of `history` entries (initially empty).
+
+PlayerCard code excerpt:
+
+```tsx
+// components/PlayerCard.tsx
+import { Player } from '../data/players'
+
+export default function PlayerCard({p}:{p:Player}){
+  return (
+    <article className="player-card card">
+      <h3>{p.name || '—'}</h3>
+      <small>{p.position || '—'}</small>
+      <div className="stats">
+        <div>Apps: {p.appearances ?? '—'}</div>
+        <div>Goals: {p.goals ?? '—'}</div>
+        <div>Assists: {p.assists ?? '—'}</div>
+      </div>
+    </article>
+  )
+}
+```
+
+### Implementation Steps (this iteration)
+1. Replace `data/fakeData.ts` with `data/players.ts` and `data/history.ts` placeholders (empty fields).
+2. Add `components/PlayerCard.tsx` and `components/HistoryItem.tsx`.
+3. Update `pages/index.tsx`, `pages/players.tsx`, and `pages/history.tsx` to use new components and data placeholders.
+4. Update `components/ThemeContext.tsx` to include new accents `purple`, `green`, `yellow` and ensure `localStorage` keys continue to work.
+5. Update `styles/globals.css` theme variables, accents, focus styles, and animations.
+6. Run the contrast checker and smoke tests; fix any issues.
+7. Commit and push the feature branch.
+
+### Notes
+
+- Data remains intentionally empty for you to fill later; UI will render placeholders (`—`) where values are missing.
+- After this spec is approved, I'll implement the changes step-by-step and verify locally before pushing.
+
+
 
 ### UI Improvements, Fake Data & Theming (new)
 

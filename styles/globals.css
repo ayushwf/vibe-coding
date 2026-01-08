@@ -39,9 +39,9 @@ body{
   --muted: #98a7bf;
 }
 
-[data-accent="blue"]{ --accent: #2563eb; --accent-600: #1e40af; --accent-400: #3b82f6; --accent-rgb: 37,99,235 }
+[data-accent="purple"]{ --accent: #7c3aed; --accent-600: #5b21b6; --accent-400: #8b5cf6; --accent-rgb: 124,58,237 }
 [data-accent="green"]{ --accent: #16a34a; --accent-600: #15803d; --accent-400: #34d399; --accent-rgb: 22,163,74 }
-[data-accent="red"]{ --accent: #dc2626; --accent-600: #b91c1c; --accent-400: #fb7185; --accent-rgb: 220,38,38 }
+[data-accent="yellow"]{ --accent: #f59e0b; --accent-600: #b45309; --accent-400: #fbbf24; --accent-rgb: 245,158,11 }
 
 body{ background:var(--bg); color:var(--fg); transition: background-color .22s, color .22s }
 .site-main{flex:1;padding:24px;max-width:960px;margin:0 auto}
@@ -67,10 +67,10 @@ button:focus, select:focus, a:focus { outline: none; box-shadow: 0 0 0 3px color
 
 /* Per-theme accent tweaks to ensure good contrast */
 [data-theme="light"][data-accent="green"]{ --accent: #116530; --accent-rgb: 17,101,48 }
-[data-theme="dark"][data-accent="blue"]{ --accent: var(--accent-400); --accent-rgb: 59,130,246 }
-[data-theme="dark"][data-accent="red"]{ --accent: var(--accent-400); --accent-rgb: 251,113,133 }
-[data-theme="light"][data-accent="blue"]{ --accent: var(--accent-600); --accent-rgb: 30,64,175 }
-[data-theme="light"][data-accent="red"]{ --accent: var(--accent-600); --accent-rgb: 185,28,28 }
+[data-theme="dark"][data-accent="purple"]{ --accent: #a78bfa; --accent-rgb: 167,139,250 }
+[data-theme="dark"][data-accent="yellow"]{ --accent: var(--accent-400); --accent-rgb: 251,191,36 }
+[data-theme="light"][data-accent="purple"]{ --accent: var(--accent-600); --accent-rgb: 91,33,182 }
+[data-theme="light"][data-accent="yellow"]{ --accent: var(--accent-600); --accent-rgb: 180,83,9 }
 [data-theme="dark"][data-accent="green"]{ --accent: var(--accent-400); --accent-rgb: 52,211,153 }
 
 /* Animated pulse for accent change */

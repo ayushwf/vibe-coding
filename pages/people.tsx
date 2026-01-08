@@ -1,13 +1,13 @@
 import { NextPage } from 'next'
-import { people } from '../data/fakeData'
+import { topPlayers } from '../data/players'
 import Card from '../components/Card'
 
 const People: NextPage = () => {
   return (
     <section>
-      <h1>People</h1>
+      <h1>Players</h1>
       <div style={{ marginTop: 12 }} className="people-grid">
-        {people.map((p) => (
+        {topPlayers.map((p) => (
           <Card key={p.id} person={p} />
         ))}
       </div>

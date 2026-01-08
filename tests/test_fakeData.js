@@ -1,12 +1,10 @@
 const assert = require('assert')
-const { people, business, contact } = require('../data/fakeData')
+const { topPlayers } = require('../data/players')
 
 try{
-  assert(Array.isArray(people), 'people should be an array')
-  assert(people.length >= 4, 'expect at least 4 people in fake data')
-  assert(business && business.name, 'business.name should exist')
-  assert(contact && contact.email, 'contact.email should exist')
-  console.log('OK: fakeData smoke tests passed')
+  assert(Array.isArray(topPlayers), 'topPlayers should be an array')
+  assert(topPlayers.length === 10, 'expect exactly 10 players in topPlayers')
+  console.log('OK: players smoke tests passed')
   process.exit(0)
 }catch(err){
   console.error('ERROR:', err.message)
