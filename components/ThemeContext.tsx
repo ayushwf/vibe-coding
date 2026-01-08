@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 type Theme = 'light' | 'dark'
-type Accent = 'blue' | 'green' | 'red'
+type Accent = 'purple' | 'green' | 'yellow'
 
 type ThemeContextValue = {
   theme: Theme
@@ -32,11 +32,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [accent, setAccentState] = useState<Accent>(() => {
     try {
       const v = localStorage.getItem('accent')
-      return (v as Accent) || 'blue'
+      return (v as Accent) || 'purple'
     } catch {
-      return 'blue'
+      return 'purple'
     }
   })
+
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     try {
@@ -47,8 +49,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.setAttribute('data-accent', accent)
     setMounted(true)
   }, [theme, accent])
-
-  const [mounted, setMounted] = useState(false)
 
   const setTheme = (t: Theme) => setThemeState(t)
   const setAccent = (a: Accent) => setAccentState(a)

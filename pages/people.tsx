@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { topPlayers } from '../data/players'
 import Card from '../components/Card'
 
@@ -7,9 +8,16 @@ const People: NextPage = () => {
     <section>
       <h1>Players</h1>
       <div style={{ marginTop: 12 }} className="people-grid">
-        {topPlayers.map((p) => (
-          <Card key={p.id} person={p} />
-        ))}
+        {topPlayers.map((p) => {
+          const slug = p.name ? p.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : p.id
+          return (
+            <Link key={p.id} href={`/players/${slug}`} passHref>
+              <a aria-label={`Open ${p.name} profile`} style={{ textDecoration: 'none' }}>
+                <Card person={p} />
+              </a>
+            </Link>
+          )
+        })}
       </div>
     </section>
   )
