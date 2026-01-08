@@ -1,0 +1,23 @@
+{
+  "name": "business-details-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node tests/test_fakeData.js"
+  },
+  "dependencies": {
+    "next": "latest",
+    "nextjs": "^0.0.3",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/next": "^8.0.7",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "typescript": "latest"
+  }
+}
