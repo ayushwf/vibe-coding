@@ -9,6 +9,12 @@ export type Player = {
   assists?: number | null
   seasons?: Array<string> | null
   image?: string
+  stats?: {
+    matches: number
+    goals: number
+    assists: number
+    minutes: number
+  }
 }
 export const topPlayers: Player[] = [
   {
@@ -23,6 +29,7 @@ export const topPlayers: Player[] = [
     seasons: null,
     image:
       'https://assets.realmadrid.com/is/image/realmadrid/ARDA_550x650_SinParche?$Desktop$&fit=wrap&wid=420',
+    stats: { matches: 49, goals: 7, assists: 9, minutes: 1158 },
   },
   {
     id: '2',
@@ -36,6 +43,7 @@ export const topPlayers: Player[] = [
     seasons: null,
     image:
       'https://assets.realmadrid.com/is/image/realmadrid/MBAPPE_550x650_SinParche?$Desktop$&fit=wrap&wid=420',
+    stats: { matches: 39, goals: 40, assists: 3, minutes: 2019 },
   },
   {
     id: '3',
@@ -49,6 +57,7 @@ export const topPlayers: Player[] = [
     seasons: null,
     image:
       'https://assets.realmadrid.com/is/image/realmadrid/VINICIUS_550x650_SinParche?$Desktop$&fit=wrap&wid=420',
+    stats: { matches: 51, goals: 20, assists: 14, minutes: 4080 },
   },
   {
     id: '4',
@@ -62,6 +71,7 @@ export const topPlayers: Player[] = [
     seasons: null,
     image:
       'https://assets.realmadrid.com/is/image/realmadrid/BELLINGHAM_550x650_SinParche?$Desktop$&fit=wrap&wid=420',
+    stats: { matches: 55, goals: 15, assists: 15, minutes: 4620 },
   },
   {
     id: '5',
@@ -75,6 +85,7 @@ export const topPlayers: Player[] = [
     seasons: null,
     image:
       'https://assets.realmadrid.com/is/image/realmadrid/RODRYGO_550x650_SinParche?$Desktop$&fit=wrap&wid=420',
+    stats: { matches: 42, goals: 12, assists: 8, minutes: 2800 },
   },
   {
     id: '6',
@@ -88,6 +99,7 @@ export const topPlayers: Player[] = [
     seasons: null,
     image:
       'https://assets.realmadrid.com/is/image/realmadrid/VALVERDE_550x650_SinParche_v2?$Desktop$&fit=wrap&wid=420',
+    stats: { matches: 50, goals: 6, assists: 7, minutes: 4200 },
   },
   {
     id: '7',

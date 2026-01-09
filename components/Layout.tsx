@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import ThemeSelector from './ThemeSelector'
+import PlayerSearch from './PlayerSearch'
 
 type Props = { children: ReactNode }
 
@@ -13,7 +14,7 @@ export default function Layout({ children }: Props) {
             <div className="rm-logo" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>⚪ Real Madrid</div>
           </div>
 
-          <div className="nav-container">
+          <div className="nav-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
             <nav>
               <ul className="nav-list">
                 <li><Link href="/">Home</Link></li>
@@ -21,6 +22,7 @@ export default function Layout({ children }: Props) {
                 <li><Link href="/contact">Contact</Link></li>
               </ul>
             </nav>
+            <PlayerSearch />
           </div>
 
           <div className="header-right">
