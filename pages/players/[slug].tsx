@@ -94,6 +94,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
   const slug = String(ctx.params?.slug || '')
-  const player = topPlayers.find((p) => slugOf(p.name) === slug) || null
+  const player = topPlayers.find((p) => slugOf(p.name) === slug)
   return { props: { player } }
 }

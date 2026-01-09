@@ -153,6 +153,11 @@ button:active{ transform:scale(0.96); }
 
 .player-page .placeholder{ border-style:dashed; background:transparent }
 
+/* Hero image styling with glass frame effect */
+.hero-image-container{display:flex;justify-content:center;align-items:center}
+.hero-image{object-fit:cover;box-shadow:0 16px 48px rgba(124,58,237,0.25),inset 0 1px 0 rgba(255,255,255,0.6);border:1px solid rgba(124,58,237,0.15);transition:all .4s cubic-bezier(0.4,0,0.2,1)}
+.hero-image:hover{transform:scale(1.02);box-shadow:0 24px 64px rgba(124,58,237,0.35),inset 0 1px 0 rgba(255,255,255,0.8)}
+
 /* Focus outlines using accent RGB for accessible ring */
 button:focus, select:focus, a:focus { outline: none; box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18) }
 
