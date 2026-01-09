@@ -6,7 +6,7 @@ const Contact: NextPage = () => {
     <section>
       <h1>Contact</h1>
       <div style={{ marginTop: 12 }} className="card">
-        <p><strong>Phone:</strong> {club.phone || '—'}</p>
+        <p><strong>Phone:</strong> {club.phone ? <a href={`tel:${club.phone}`} style={{ color: 'var(--accent)' }}>{club.phone}</a> : '—'}</p>
         <p><strong>Email:</strong> {club.email || '—'}</p>
         <p><strong>Address:</strong> {club.address || '—'}</p>
       </div>

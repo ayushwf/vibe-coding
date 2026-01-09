@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useTheme } from '../../components/ThemeContext'
 import { topPlayers, Player } from '../../data/players'
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 
 type Props = { player?: Player }
 
@@ -12,6 +12,37 @@ function slugOf(name?: string) {
 
 export default function PlayerPage({ player }: Props) {
   const { mounted } = useTheme()
+  const [essay, setEssay] = useState('')
+  const [saved, setSaved] = useState(false)
+
+  useEffect(() => {
+    if (!player) return
+    try {
+      const key = `essay:${player.id}`
+      const v = localStorage.getItem(key) || ''
+      setEssay(v)
+      setSaved(Boolean(v))
+    } catch {}
+  }, [player])
+
+  const save = () => {
+    if (!player) return
+    try {
+      const key = `essay:${player.id}`
+      localStorage.setItem(key, essay)
+      setSaved(true)
+    } catch {}
+  }
+
+  const clear = () => {
+    if (!player) return
+    try {
+      const key = `essay:${player.id}`
+      localStorage.removeItem(key)
+      setEssay('')
+      setSaved(false)
+    } catch {}
+  }
 
   if (!player) return <section className="placeholder">Player not found</section>
 
@@ -33,7 +64,22 @@ export default function PlayerPage({ player }: Props) {
 
           <section style={{ marginTop: 20 }}>
             <h2 style={{ margin: 0 }}>Essay</h2>
-            <div className="placeholder" style={{ marginTop: 12, minHeight: 160 }} />
+            {mounted ? (
+              <div style={{ marginTop: 12 }}>
+                <textarea
+                  value={essay}
+                  onChange={(e) => setEssay(e.target.value)}
+                  placeholder="Write the essay here..."
+                  style={{ width: '100%', minHeight: 160, padding: 12, borderRadius: 8, border: '1px solid rgba(0,0,0,0.08)', background: 'rgba(255,255,255,0.6)', resize: 'vertical' }}
+                />
+                <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>
+                  <button onClick={save} style={{ padding: '8px 12px', borderRadius: 8, background: 'var(--accent)', color: '#fff', border: 'none' }}>{saved ? 'Saved' : 'Save'}</button>
+                  <button onClick={clear} style={{ padding: '8px 12px', borderRadius: 8, background: 'transparent', border: '1px solid rgba(0,0,0,0.08)' }}>Clear</button>
+                </div>
+              </div>
+            ) : (
+              <div className="placeholder" style={{ marginTop: 12, minHeight: 160 }} />
+            )}
           </section>
         </article>
       </div>

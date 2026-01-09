@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 type Theme = 'light' | 'dark'
-type Accent = 'purple' | 'green' | 'yellow'
+type Accent = 'lavender' | 'red' | 'blue' | 'yellow' | 'green'
 
 type ThemeContextValue = {
   theme: Theme
@@ -32,9 +32,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [accent, setAccentState] = useState<Accent>(() => {
     try {
       const v = localStorage.getItem('accent')
-      return (v as Accent) || 'purple'
+      return (v as Accent) || 'lavender'
     } catch {
-      return 'purple'
+      return 'lavender'
     }
   })
 

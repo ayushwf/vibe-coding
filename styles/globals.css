@@ -1,9 +1,9 @@
 :root{
-  --bg: #ffffff;
+  --bg: #f3e8ff; /* light purple background */
   --fg: #0f172a;
   --muted: #6b7280;
-  --accent: #7c3aed; /* default purple to match selector */
-  --accent-rgb: 124,58,237;
+  --accent: #b497f6; /* default lavender */
+  --accent-rgb: 180,151,246;
   --player-name: #5b21b6; /* dark purple for light theme */
 }
 html,body,#__next{height:100%;}
@@ -13,9 +13,29 @@ body{
   background:var(--bg);
   color:var(--fg);
 }
-.app-root{display:flex;flex-direction:column;min-height:100vh}
-.site-header{background:#f8fafc;padding:12px 20px;border-bottom:1px solid #e6edf3}
-.site-header{display:flex;align-items:center;justify-content:space-between;background:#f8fafc;padding:12px 20px;border-bottom:1px solid #e6edf3}
+.app-root{display:flex;flex-direction:column;min-height:100vh;position:relative;overflow-x:hidden}
+
+/* Decorative watermark elements on sides */
+.decorative-watermark{position:fixed;opacity:0.04;font-size:120px;z-index:0;pointer-events:none;display:flex;flex-direction:column;gap:40px;top:50%;transform:translateY(-50%)}
+.decorative-watermark.left{left:20px}
+.decorative-watermark.right{right:20px}
+.watermark-item{font-weight:bold;text-shadow:0 4px 20px rgba(124,58,237,0.3)}
+.player-text{font-size:32px;color:var(--accent);font-weight:700}
+
+@media(max-width:768px){
+  .decorative-watermark{display:none}
+}
+
+/* Real Madrid logo in header */
+.header-left{display:flex;align-items:center;gap:16px}
+.rm-logo{font-size:32px;font-weight:900;color:var(--accent);animation:float 6s ease-in-out infinite}
+
+@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
+
+/* Footer badges */
+.footer-badges{font-size:20px;margin-bottom:8px;letter-spacing:2px}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.site-header{background: rgba(243,232,255,0.75);backdrop-filter: blur(8px) saturate(120%);-webkit-backdrop-filter: blur(8px) saturate(120%);border-bottom: 1px solid rgba(124,58,237,0.08)}
 .nav-list{display:flex;gap:16px;list-style:none;padding:0;margin:0}
 .nav-list a{color:var(--fg);text-decoration:none}
 .header-right{display:flex;align-items:center;gap:12px}
@@ -44,19 +64,26 @@ body{
   --player-name: #d9c9ff; /* light purple for dark theme */
 }
 
-[data-accent="purple"]{ --accent: #7c3aed; --accent-600: #5b21b6; --accent-400: #8b5cf6; --accent-rgb: 124,58,237 }
-[data-accent="green"]{ --accent: #16a34a; --accent-600: #15803d; --accent-400: #34d399; --accent-rgb: 22,163,74 }
+[data-theme="dark"] .site-header{ background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); }
+[data-theme="dark"] .site-footer{ background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.06); }
+
+[data-accent="lavender"]{ --accent: #b497f6; --accent-600: #8b5cf6; --accent-400: #d7c6ff; --accent-rgb: 180,151,246 }
+[data-accent="red"]{ --accent: #ef4444; --accent-600: #dc2626; --accent-400: #f87171; --accent-rgb: 239,68,68 }
+[data-accent="blue"]{ --accent: #2563eb; --accent-600: #1e40af; --accent-400: #60a5fa; --accent-rgb: 37,99,235 }
 [data-accent="yellow"]{ --accent: #f59e0b; --accent-600: #b45309; --accent-400: #fbbf24; --accent-rgb: 245,158,11 }
+[data-accent="green"]{ --accent: #16a34a; --accent-600: #15803d; --accent-400: #34d399; --accent-rgb: 22,163,74 }
 
 body{ background:var(--bg); color:var(--fg); transition: background-color .22s, color .22s }
 .site-main{flex:1;padding:24px;max-width:960px;margin:0 auto}
-.site-footer{padding:12px 20px;background:#f8fafc;border-top:1px solid #e6edf3;text-align:center;color:var(--muted)}
+.site-footer{padding:12px 20px;text-align:center;color:var(--muted)}
+.site-footer{background: rgba(243,232,255,0.68);backdrop-filter: blur(6px) saturate(110%);-webkit-backdrop-filter: blur(6px) saturate(110%);border-top: 1px solid rgba(124,58,237,0.06)}
 
 /* Placeholder content styles */
 .placeholder{padding:32px;border:2px dashed #e5e7eb;border-radius:8px;text-align:center;color:var(--muted)}
 
-/* Card styles */
-.card{border-radius:8px;padding:16px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid var(--border);color:var(--fg);transition:box-shadow .18s,transform .18s}
+/* Card styles - enhanced glass morphism */
+.card{border-radius:14px;padding:18px;background:rgba(255,255,255,0.65);backdrop-filter:blur(12px) saturate(125%);-webkit-backdrop-filter:blur(12px) saturate(125%);border:1px solid rgba(124,58,237,0.15);color:var(--fg);transition:all .28s cubic-bezier(0.4,0,0.2,1);box-shadow:0 8px 32px rgba(124,58,237,0.12),inset 0 1px 0 rgba(255,255,255,0.6)}
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(124,58,237,0.25),inset 0 1px 0 rgba(255,255,255,0.8)}
 .card h3{margin:0 0 6px 0;text-align:center;font-weight:700;color:var(--player-name)}
 .card small{color:var(--muted)}
 .people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -66,15 +93,14 @@ a, button, input, select { transition: color .18s, background-color .18s, box-sh
 button:focus, select:focus, a:focus { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
 
 /* Border and muted adjustments for dark theme */
-[data-theme="light"]{ --border: rgba(0,0,0,0.06); --card-bg: #ffffff }
-[data-theme="dark"]{ --border: rgba(255,255,255,0.06); --card-bg: rgba(255,255,255,0.03) }
-[data-theme="dark"]{ --border: rgba(255,255,255,0.06); }
+[data-theme="light"]{ --border: rgba(124,58,237,0.12); --card-bg: rgba(255,255,255,0.65); }
+[data-theme="dark"]{ --border: rgba(180,151,246,0.15); --card-bg: rgba(139,92,246,0.08); }
 
 /* Per-theme accent tweaks to ensure good contrast */
 [data-theme="light"][data-accent="green"]{ --accent: #116530; --accent-rgb: 17,101,48 }
-[data-theme="dark"][data-accent="purple"]{ --accent: #a78bfa; --accent-rgb: 167,139,250 }
+[data-theme="dark"][data-accent="lavender"]{ --accent: #d9c9ff; --accent-rgb: 217,201,255 }
 [data-theme="dark"][data-accent="yellow"]{ --accent: var(--accent-400); --accent-rgb: 251,191,36 }
-[data-theme="light"][data-accent="purple"]{ --accent: var(--accent-600); --accent-rgb: 91,33,182 }
+[data-theme="light"][data-accent="lavender"]{ --accent: var(--accent-600); --accent-rgb: 139,92,246 }
 [data-theme="light"][data-accent="yellow"]{ --accent: var(--accent-600); --accent-rgb: 180,83,9 }
 [data-theme="dark"][data-accent="green"]{ --accent: var(--accent-400); --accent-rgb: 52,211,153 }
 
@@ -96,26 +122,32 @@ p, small, a, li { color: var(--fg) }
 /* Card background uses theme-aware variable */
 .card{ background: var(--card-bg); }
 
-/* Glass UI panel - iOS-like translucent frosted effect */
+/* Glass UI panel - premium frosted effect with purple tints */
 .glass-panel{
-  border-radius:14px;
-  padding:18px;
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+  border-radius:16px;
+  padding:20px;
+  background: rgba(243,232,255,0.7);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(124,58,237,0.2);
+  box-shadow: 0 12px 40px rgba(124,58,237,0.15), inset 0 1px 0 rgba(255,255,255,0.7);
 }
 
 [data-theme="dark"] .glass-panel{
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  background: rgba(139,92,246,0.08);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(180,151,246,0.15);
+  box-shadow: 0 10px 40px rgba(124,58,237,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
-/* Make clickable cards feel interactive */
+/* Make clickable cards feel interactive with glass polish */
 a > .card{ cursor: pointer; transform-origin: center; }
-a > .card:hover{ transform: translateY(-6px); box-shadow: 0 18px 50px rgba(2,6,23,0.12); }
+a > .card:hover{ transform: translateY(-8px); box-shadow: 0 24px 60px rgba(124,58,237,0.22), inset 0 1px 0 rgba(255,255,255,0.8); }
+
+/* Enhanced button styling with glass */
+button{ border-radius:10px; font-weight:600; letter-spacing:0.4px; transition:all .25s cubic-bezier(0.4,0,0.2,1); }
+button:active{ transform:scale(0.96); }
 
 .player-name{ text-align:center; font-weight:700; color:var(--player-name); font-size:1.5rem; margin:0 }
 

@@ -11,10 +11,8 @@ const People: NextPage = () => {
         {topPlayers.map((p) => {
           const slug = p.name ? p.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : p.id
           return (
-            <Link key={p.id} href={`/players/${slug}`} passHref>
-              <a aria-label={`Open ${p.name} profile`} style={{ textDecoration: 'none' }}>
-                <Card person={p} />
-              </a>
+            <Link key={p.id} href={`/players/${slug}`} aria-label={`Open ${p.name} profile`} style={{ textDecoration: 'none' }}>
+              <Card person={p} />
             </Link>
           )
         })}

@@ -2,9 +2,11 @@ import { useTheme } from './ThemeContext'
 import { useEffect, useState } from 'react'
 
 const ACCENTS = {
-  purple: '#7c3aed',
-  green: '#16a34a',
+  lavender: '#b497f6',
+  red: '#ef4444',
+  blue: '#2563eb',
   yellow: '#f59e0b',
+  green: '#16a34a',
 }
 
 export default function ThemeSelector() {
