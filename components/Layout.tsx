@@ -18,11 +18,10 @@ export default function Layout({ children }: Props) {
             <nav>
               <ul className="nav-list">
                 <li><Link href="/">Home</Link></li>
-                <li><Link href="/people">People</Link></li>
+                <li><Link href="/people">Players</Link></li>
                 <li><Link href="/contact">Contact</Link></li>
               </ul>
             </nav>
-            <PlayerSearch />
           </div>
 
           <div className="header-right">
@@ -30,6 +29,17 @@ export default function Layout({ children }: Props) {
           </div>
         </div>
       </header>
+
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '1rem',
+        background: 'var(--glass-bg)',
+        borderBottom: '1px solid var(--glass-border)',
+        marginBottom: '1rem'
+      }}>
+        <PlayerSearch />
+      </div>
 
       <main className="site-main">{children}</main>
 
